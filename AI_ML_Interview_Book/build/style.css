@@ -1,0 +1,53 @@
+@page {
+  size: A4;
+  margin: 22mm 18mm 20mm 18mm;
+  @bottom-center { content: counter(page); font-size: 9pt; color: #666; }
+  @top-left { content: string(chaptitle); font-size: 8.5pt; color: #888; }
+}
+@page cover { margin: 0; @bottom-center { content: none; } @top-left { content: none; } }
+@page divider { @top-left { content: none; } }
+
+body { font-family: "DejaVu Serif", Georgia, serif; font-size: 10.5pt; line-height: 1.55; color: #1a1a1a; }
+.cover { page: cover; height: 297mm; display: flex; flex-direction: column;
+  justify-content: center; text-align: center; background: #10243e; color: #fff; }
+.cover h1 { font-size: 34pt; margin: 0 20mm; border: none; }
+.cover .subtitle { font-size: 15pt; color: #9fc2e8; margin-top: 8mm; }
+.cover .author { font-size: 12pt; color: #ccc; margin-top: 30mm; }
+
+.part-divider { page: divider; page-break-before: always; height: 250mm;
+  display: flex; align-items: center; justify-content: center; }
+.part-divider h1 { font-size: 26pt; color: #10243e; border: none; text-align: center; }
+
+h1.chapter { string-set: chaptitle content(); page-break-before: always;
+  font-size: 21pt; color: #10243e; border-bottom: 2.5pt solid #10243e; padding-bottom: 3mm; }
+h2 { font-size: 14.5pt; color: #16365c; margin-top: 8mm; }
+h3 { font-size: 12pt; color: #1f4e79; }
+h4 { font-size: 10.5pt; }
+
+pre { background: #f6f8fa; border: 0.5pt solid #d0d7de; border-radius: 3pt;
+  padding: 3mm; font-size: 8.3pt; line-height: 1.4; white-space: pre-wrap;
+  font-family: "DejaVu Sans Mono", monospace; page-break-inside: auto; }
+code { font-family: "DejaVu Sans Mono", monospace; font-size: 8.8pt; background: #f2f2f2; padding: 0 1.5pt; }
+pre code { background: none; padding: 0; }
+
+table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 4mm 0; }
+th, td { border: 0.5pt solid #999; padding: 1.6mm 2.2mm; text-align: left; }
+th { background: #e8eef5; }
+tr { page-break-inside: avoid; }
+
+blockquote { border-left: 2.5pt solid #1f4e79; margin-left: 0; padding: 1mm 4mm;
+  background: #f4f8fc; color: #333; }
+
+.qa { border: 0.7pt solid #b8cce4; border-radius: 3pt; padding: 3mm 4mm; margin: 4mm 0; page-break-inside: avoid; }
+.qa .q { font-weight: bold; color: #10243e; }
+
+.toc-page { page-break-after: always; }
+.toc-page a { text-decoration: none; color: #1a1a1a; display: block; margin: 1mm 0; }
+.toc-page a.toc-part { font-weight: bold; color: #10243e; margin-top: 4mm; }
+.toc-page a.toc-chap { margin-left: 6mm; }
+.toc-page a::after { content: leader('.') " " target-counter(attr(href), page); }
+
+math { font-size: 10.5pt; }
+img { max-width: 100%; }
+figure { text-align: center; page-break-inside: avoid; }
+figcaption { font-size: 8.5pt; color: #555; }
